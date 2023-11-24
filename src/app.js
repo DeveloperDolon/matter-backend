@@ -2,8 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const applyMiddleware = require('./middlewares/applyMiddleware');
 const port = process.env.PORT || 5000;
 
+applyMiddleware(app);
 
 app.get('/health', (req, res) =>{
     res.send("Agency is running")
