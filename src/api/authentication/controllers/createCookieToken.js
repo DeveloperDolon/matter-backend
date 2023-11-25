@@ -24,7 +24,7 @@ const logout = async (req, res, next) => {
     try {
         const user = req.body;
         console.log("logged out", user);
-        res.clearCookies("token", {maxAge: 0}).send({cleared: true});
+        res.clearCookie("token", {maxAge: 0}).send({cleared: true});
     } catch(err) {
         next(err);
     } 
