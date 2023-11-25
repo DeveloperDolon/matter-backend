@@ -9,7 +9,7 @@ const applyMiddleware = (app) => {
             LOCAL_CLIENT,
             CLIENT
         ],
-        credentials: true
+        credentials: true,
     }))
 
     app.use(express.json());

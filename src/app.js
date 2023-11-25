@@ -1,11 +1,18 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const cors = require('cors');
 const applyMiddleware = require('./middlewares/applyMiddleware');
+const connectDB = require('./db/connectDB');
 const port = process.env.PORT || 5000;
+const authenticationRouter = require("./routes/authentication/index");
 
 applyMiddleware(app);
+
+
+
+app.use(authenticationRouter);
+
+
 
 app.get('/health', (req, res) =>{
     res.send("Agency is running")
@@ -23,6 +30,12 @@ app.use((err, req, res, next) => {
     })
 })
 
-app.listen(port, () => {
-    console.log("Agency is listening " + port);
-})
+const main = async () => {
+    await connectDB();
+
+    app.listen(port, () => {
+        console.log("Agency is listening " + port);
+    })
+}
+
+main();
