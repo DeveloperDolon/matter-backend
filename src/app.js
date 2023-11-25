@@ -4,14 +4,16 @@ const app = express();
 const applyMiddleware = require('./middlewares/applyMiddleware');
 const connectDB = require('./db/connectDB');
 const port = process.env.PORT || 5000;
-const authenticationRouter = require("./routes/authentication/index");
 
 applyMiddleware(app);
+
+const authenticationRouter = require("./routes/authentication/index");
+const usersRouter = require("./routes/users/index");
 
 
 
 app.use(authenticationRouter);
-
+app.use(usersRouter);
 
 
 app.get('/health', (req, res) =>{
