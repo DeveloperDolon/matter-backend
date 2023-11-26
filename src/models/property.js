@@ -22,6 +22,10 @@ const PropertySchema = new Schema({
         type: String,
         required: true,
     },
+    "agent_image" : {
+        type: String,
+        required: true,
+    },
     "price_range": {
         type: String,
         required: true,

@@ -1,5 +1,5 @@
 
-const checkingJWT = (userEmail, queryEmail) => {
+const checkingJWT = async (userEmail, queryEmail) => {
     
     if(userEmail !== queryEmail) {
         return false;
