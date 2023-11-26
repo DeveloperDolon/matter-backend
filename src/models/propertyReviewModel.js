@@ -27,7 +27,7 @@ const PropertyReviewSchema = new Schema({
         required: true
     },
     "review_date": {
-        type: Date,
+        type: String,
         default: Date.now()
     },
     "review_description": {

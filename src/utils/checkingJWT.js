@@ -1,10 +1,7 @@
 
-const checkingJWT = async (userEmail, queryEmail) => {
+const checkingJWT = (userEmail, queryEmail) => {
     
-    if(userEmail !== queryEmail) {
-        return false;
-    }
-    return true;
+    return userEmail === queryEmail;
 }
 
 module.exports = checkingJWT;
