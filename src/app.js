@@ -9,15 +9,17 @@ applyMiddleware(app);
 
 const authenticationRouter = require("./routes/authentication/index");
 const usersRouter = require("./routes/users/index");
-const addProperty = require("./routes/properties/index");
-const getPropertyReviews = require("./routes/propertyReviews/index");
+const properties = require("./routes/properties/index");
+const propertyReviews = require("./routes/propertyReviews/index");
+const wishlist = require("./routes/wishlist/index");
 
 
 
 app.use(authenticationRouter);
 app.use(usersRouter);
-app.use(addProperty);
-app.use(getPropertyReviews);
+app.use(properties);
+app.use(propertyReviews);
+app.use(wishlist);
 
 
 app.get('/health', (req, res) =>{

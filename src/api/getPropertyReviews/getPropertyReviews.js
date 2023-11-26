@@ -14,7 +14,7 @@ const getPropertyReviews = async (req, res, next) => {
         const query = {property_id: id};
 
         const result = await propertyReviewModel.find(query).sort({ review_date: 'desc' });
-
+        
         res.send(result);
 
     } catch (err) {
