@@ -1,5 +1,5 @@
 const checkingJWT = require("../../utils/checkingJWT");
-const userReviewModel = require("../../models/userReviewModel");
+const propertyReviewModel = require("../../models/propertyReviewModel");
 
 const getUserReviews = async (req, res, next) => {
     try {
@@ -10,7 +10,7 @@ const getUserReviews = async (req, res, next) => {
         }
 
         const query = {reviewer_email: req.query.email};
-        const result = await userReviewModel.find(query);
+        const result = await propertyReviewModel.find(query);
 
         res.send(result);
     } catch(err) {
