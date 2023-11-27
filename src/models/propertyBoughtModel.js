@@ -17,6 +17,9 @@ const PropertyBoughtSchema = new Schema({
     "property_location": {
         type: String,
         required: true
+    },"property_image" : {
+        type: String,
+        required: true
     },
     "agent_name": {
         type: String,
@@ -41,6 +44,10 @@ const PropertyBoughtSchema = new Schema({
     "offered_price": {
         type: Number,
         required: true
+    },
+    "status": {
+        type: String,
+        default: "pending"
     }
 });
 

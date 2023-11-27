@@ -12,7 +12,7 @@ const deleteWishlist = async (req, res, next) => {
         }
         const id = req.params.id;
         
-        const result = await WishlistModel.findOneAndDelete(id);
+        const result = await WishlistModel.findByIdAndDelete(id);
 
         res.send(result);
 

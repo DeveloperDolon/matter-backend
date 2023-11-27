@@ -1,6 +1,6 @@
 const checkingJWT = require("../../utils/checkingJWT");
 const propertyBoughtModel = require("../../models/propertyBoughtModel");
-
+const wishlistModel = require("../../models/wishlistModel");
 
 const addUserBoughtProperty = async (req, res, next) => {
     try {
@@ -12,9 +12,12 @@ const addUserBoughtProperty = async (req, res, next) => {
         }
 
         const propertyData = req.body;
+        
+        const deleteWishlist = await wishlistModel.findByIdAndDelete(propertyData?.wishlist_id);
+
         const result = await propertyBoughtModel.insertMany(propertyData);
 
-        res.send(result);
+        res.send({insertedData: result, removeFromWishlist: deleteWishlist});
     } catch(err) {
         next(err);
     }

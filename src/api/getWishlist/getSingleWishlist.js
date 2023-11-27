@@ -1,6 +1,5 @@
 const checkingJWT = require("../../utils/checkingJWT");
 const wishlistModel = require("../../models/wishlistModel");
-const propertyModel = require("../../models/property");
 
 const getSingleWishlist = async (req, res, next) => {
     try {
@@ -14,10 +13,8 @@ const getSingleWishlist = async (req, res, next) => {
         const id = req.params.id;
         
         const wishlistData = await wishlistModel.findById(id);
-        
-        const property = await propertyModel.findById(wishlistData?.property_id);
 
-        res.send({wishlistData: wishlistData, property: property});
+        res.send(wishlistData);
 
     } catch (err) {
         next(err);
