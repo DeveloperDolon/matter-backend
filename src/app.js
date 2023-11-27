@@ -12,14 +12,14 @@ const usersRouter = require("./routes/users/index");
 const properties = require("./routes/properties/index");
 const propertyReviews = require("./routes/propertyReviews/index");
 const wishlist = require("./routes/wishlist/index");
-
-
+const propertyBought = require("./routes/propertyBought/index");
 
 app.use(authenticationRouter);
 app.use(usersRouter);
 app.use(properties);
 app.use(propertyReviews);
 app.use(wishlist);
+app.use(propertyBought);
 
 
 app.get('/health', (req, res) =>{
