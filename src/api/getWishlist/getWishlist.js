@@ -20,7 +20,7 @@ const getWishlist = async (req, res, next) => {
 
         const properties = await propertyModel.find({ _id: { $in: propertiesId } });
 
-        res.send({wishlistProperties: properties});
+        res.send({wishlistProperties: properties, wishlistData: wishlistData});
     } catch (err) {
         next(err);
     }
