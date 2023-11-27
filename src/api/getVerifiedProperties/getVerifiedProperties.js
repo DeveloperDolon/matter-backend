@@ -5,7 +5,7 @@ const propertyModel = require("../../models/property");
 const getVerifiedProperties = async (req, res, next) => {
     try {
 
-        const query = {verified: true};
+        const query = {verified: "verified"};
 
         const result = await propertyModel.find(query);
 

@@ -4,10 +4,13 @@ const checkingJWT = require('../../utils/checkingJWT');
 const addProperty = async (req, res, next) => {
     try {
 
-        checkingJWT(req?.user?.user, req.query.email);
+        const isValid = checkingJWT(req?.user?.user, req.query.email);
+
+        if(!isValid) {
+            return res.status(401).send({message: "Forbidden access!"});
+        }
 
         const propertyData = req.body;
-        propertyData.verified = false;
 
         const result = await propertyModel.insertMany(propertyData);
 

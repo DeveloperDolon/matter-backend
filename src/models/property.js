@@ -58,8 +58,8 @@ const PropertySchema = new Schema({
         required: true,
     },
     "verified": {
-        type: Boolean,
-        default: false,
+        type: String,
+        default: "unknown",
     }
 
 
