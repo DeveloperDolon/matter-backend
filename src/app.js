@@ -13,6 +13,7 @@ const properties = require("./routes/properties/index");
 const propertyReviews = require("./routes/propertyReviews/index");
 const wishlist = require("./routes/wishlist/index");
 const propertyBought = require("./routes/propertyBought/index");
+const paymentRoutes = require("./routes/payment/index");
 
 app.use(authenticationRouter);
 app.use(usersRouter);
@@ -20,6 +21,7 @@ app.use(properties);
 app.use(propertyReviews);
 app.use(wishlist);
 app.use(propertyBought);
+app.use(paymentRoutes);
 
 
 app.get('/health', (req, res) =>{
