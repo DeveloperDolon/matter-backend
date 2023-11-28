@@ -29,7 +29,7 @@ const WishlistSchema = new Schema({
         type: String,
         required: true
     },"verified": {
-        type: Boolean,
+        type: String,
         required: true
     },
     "buyer_email": {

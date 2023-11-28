@@ -11,6 +11,8 @@ const addWishlist = async (req, res, next) => {
             return res.status(401).send({message: "Forbidden access."});
         }
 
+        console.log("hello wold")
+
         const wishlistData = req.body;
         
         const result = await wishlistModel.insertMany(wishlistData);
