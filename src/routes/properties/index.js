@@ -5,6 +5,7 @@ const getSingleProperty = require('../../api/singlePropertyGet/getSingleProperty
 const getVerifiedProperties = require("../../api/getVerifiedProperties/getVerifiedProperties");
 const getAgentProperty = require("../../api/getAgentProperty/getAgentProperty");
 const deleteAgentProperty = require("../../api/deleteAgentProperty/deleteAgentProperty");
+const updateProperty = require("../../api/updateProperty/updateProperty");
 const express = require('express');
 const verifyAgent = require('../../middlewares/verifyAgent');
 
@@ -19,5 +20,8 @@ router.get("/properties/:id", getSingleProperty);
 router.get("/agent-properties", verifyToken, verifyAgent, getAgentProperty);
 
 router.delete("/agent-properties/:id", verifyToken, verifyAgent, deleteAgentProperty);
+
+router.patch("/agent-properties/:id", verifyToken, verifyAgent, updateProperty);
+
 
 module.exports = router;
