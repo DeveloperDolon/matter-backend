@@ -17,7 +17,7 @@ const verifyAgent = require('../../middlewares/verifyAgent');
 
 const router = express.Router();
 
-router.post("/property", verifyToken, addProperty);
+router.post("/property", verifyToken, verifyAgent, addProperty);
 
 router.get("/properties", getVerifiedProperties);
 

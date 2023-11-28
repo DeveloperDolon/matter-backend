@@ -1,5 +1,6 @@
 const checkingJWT = require("../../utils/checkingJWT");
 const userModal = require("../../models/user");
+const propertyModel = require("../../models/property");
 
 const updateUser = async (req, res, next) => {
     try {
@@ -7,6 +8,14 @@ const updateUser = async (req, res, next) => {
         const isValid = checkingJWT(req.user.user, req.query.email);
         if(!isValid) {
             return res.status(401).send({message: "forbidden access"});
+        }
+
+        if(req.body.role === "fraud") {
+            const query = {agent_email: req.body?.fraudEmail};
+
+            const changePropertyStatus = await propertyModel.updateMany(query, {$set: {verified: "unknown"} })
+
+            console.log(changePropertyStatus);
         }
 
         const update = {role: req.body.role};

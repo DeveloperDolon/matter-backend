@@ -1,9 +1,9 @@
 const checkingJWT = require("../../utils/checkingJWT");
-const propertyBoughtModel = require("../../models/propertyBoughtModel");
+const propertyReviewModel = require("../../models/propertyReviewModel");
 
 
-const getSoldProperties = async (req, res, next) => {
-    try {   
+const getAllUserReviews = async (req, res, next) => {
+    try {
 
         const isValid = checkingJWT(req.user.user, req.query.email);
 
@@ -11,9 +11,7 @@ const getSoldProperties = async (req, res, next) => {
             return res.status(401).send({message: "Forbidden access."});
         }
 
-        const query = { agent_email: req.query.email, status: "sold"};
-
-        const result = await propertyBoughtModel.find(query);
+        const result = await propertyReviewModel.find({}, "reviewer_name reviewer_email reviewer_image review_description");
 
         res.send(result);
 
@@ -22,4 +20,4 @@ const getSoldProperties = async (req, res, next) => {
     }
 }
 
-module.exports = getSoldProperties;
+module.exports = getAllUserReviews;
