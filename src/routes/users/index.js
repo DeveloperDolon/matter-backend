@@ -5,6 +5,7 @@ const verifyAdmin = require("../../middlewares/verifyAdmin");
 const verifyToken = require("../../middlewares/verifyToken");
 const getAllUsers = require("../../api/getUser/getAllUsers");
 const updateUser = require("../../api/updateUser/updateUser");
+const deleteUser = require("../../api/deleteUser/deleteUser");
 
 const router = express.Router();
 
@@ -14,7 +15,9 @@ router.get("/user", verifyToken, getUser);
 
 router.get("/all-users", verifyToken, verifyAdmin, getAllUsers);
 
-router.patch("/update-user", verifyToken, verifyAdmin, updateUser)
+router.patch("/update-user", verifyToken, verifyAdmin, updateUser);
+
+router.delete("/delete-user/:id", verifyToken, verifyAdmin, deleteUser);
 
 
 module.exports = router;
