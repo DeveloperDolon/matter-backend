@@ -48,6 +48,10 @@ const PropertyBoughtSchema = new Schema({
     "status": {
         type: String,
         default: "pending"
+    },
+    "transactionID": {
+        type: String,
+        default: "not paid"
     }
 });
 
