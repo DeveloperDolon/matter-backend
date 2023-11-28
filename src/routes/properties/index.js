@@ -2,6 +2,7 @@
 const addProperty = require('../../api/addProperty/addProperty');
 const verifyToken = require('../../middlewares/verifyToken');
 const getSingleProperty = require('../../api/singlePropertyGet/getSingleProperty');
+const verifyAdmin = require('../../middlewares/verifyAdmin');
 const getVerifiedProperties = require("../../api/getVerifiedProperties/getVerifiedProperties");
 const getAgentProperty = require("../../api/getAgentProperty/getAgentProperty");
 const deleteAgentProperty = require("../../api/deleteAgentProperty/deleteAgentProperty");
@@ -9,6 +10,8 @@ const updateProperty = require("../../api/updateProperty/updateProperty");
 const getSoldProperties = require("../../api/getSoldProperties/getSoldProperties");
 const getRequestedProperties = require("../../api/getRequestedProperties/getRequestedProperties");
 const setRequestedPropertiesStatus = require("../../api/setRequestedPropertiesStatus/setRequestedPropertiesStatus");
+const adminManageProperties = require("../../api/adminManageProperties/adminManageProperties");
+const adminSetPropertyStatus = require("../../api/adminSetPropertyStatus/adminSetPropertyStatus");
 const express = require('express');
 const verifyAgent = require('../../middlewares/verifyAgent');
 
@@ -31,6 +34,12 @@ router.get("/agent-sold-properties", verifyToken, verifyAgent, getSoldProperties
 router.get("/agents-requested-properties", verifyToken, verifyAgent, getRequestedProperties);
 
 router.patch("/agents-requested-properties/:id", verifyToken, verifyAgent, setRequestedPropertiesStatus);
+
+router.get("/admin-manage-properties", verifyToken, verifyAdmin, adminManageProperties);
+
+router.patch("/admin-set-properties-status/:id", verifyToken, verifyAdmin, adminSetPropertyStatus);
+
+
 
 
 module.exports = router;
