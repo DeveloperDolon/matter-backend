@@ -60,6 +60,10 @@ const PropertySchema = new Schema({
     "verified": {
         type: String,
         default: "unknown",
+    },
+    "advertised": {
+        type: Boolean,
+        default: false,
     }
 
 

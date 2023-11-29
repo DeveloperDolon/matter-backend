@@ -12,6 +12,7 @@ const getRequestedProperties = require("../../api/getRequestedProperties/getRequ
 const setRequestedPropertiesStatus = require("../../api/setRequestedPropertiesStatus/setRequestedPropertiesStatus");
 const adminManageProperties = require("../../api/adminManageProperties/adminManageProperties");
 const adminSetPropertyStatus = require("../../api/adminSetPropertyStatus/adminSetPropertyStatus");
+const setAdvertisedProperty = require("../../api/setAdvertisedProperty/setAdvertisedProperty")
 const express = require('express');
 const verifyAgent = require('../../middlewares/verifyAgent');
 
@@ -38,6 +39,8 @@ router.patch("/agents-requested-properties/:id", verifyToken, verifyAgent, setRe
 router.get("/admin-manage-properties", verifyToken, verifyAdmin, adminManageProperties);
 
 router.patch("/admin-set-properties-status/:id", verifyToken, verifyAdmin, adminSetPropertyStatus);
+
+router.patch("/admin-advertise-property/:id", verifyToken, verifyAdmin, setAdvertisedProperty);
 
 
 
