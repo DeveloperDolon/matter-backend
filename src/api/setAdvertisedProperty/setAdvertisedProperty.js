@@ -9,8 +9,15 @@ const setAdvertisedProperty = async (req, res, next) => {
         if(!isValid) {
             return res.status(401).send({message: "forbidden access"});
         }
+
+        const howManyAdvertised = await propertyModel.find({advisor_email: req.query.email});
+
+        if( req.body.advertisement &&  howManyAdvertised?.length > 5) {
+            return res.send({limitOver: true, message: "Your advertise limit is over"});
+        }
+
         const id = req.params.id;
-        const update = {advertised: req.body.advertisement};
+        const update = {advertised: req.body.advertisement, advisor_email: req.body.advertisement ? req.query.email : "none"};
         const result = await propertyModel.findByIdAndUpdate(id, update);
 
         res.send(result);

@@ -13,12 +13,15 @@ const setRequestedPropertiesStatus = require("../../api/setRequestedPropertiesSt
 const adminManageProperties = require("../../api/adminManageProperties/adminManageProperties");
 const adminSetPropertyStatus = require("../../api/adminSetPropertyStatus/adminSetPropertyStatus");
 const setAdvertisedProperty = require("../../api/setAdvertisedProperty/setAdvertisedProperty")
+const getAdvertiseProperties = require("../../api/getAdvertiseProperties/getAdvertiseProperties");
 const express = require('express');
 const verifyAgent = require('../../middlewares/verifyAgent');
 
 const router = express.Router();
 
 router.post("/property", verifyToken, verifyAgent, addProperty);
+
+router.get("/advertised-properties", getAdvertiseProperties);
 
 router.get("/properties", getVerifiedProperties);
 

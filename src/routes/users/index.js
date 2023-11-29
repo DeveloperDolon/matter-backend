@@ -6,6 +6,7 @@ const verifyToken = require("../../middlewares/verifyToken");
 const getAllUsers = require("../../api/getUser/getAllUsers");
 const updateUser = require("../../api/updateUser/updateUser");
 const deleteUser = require("../../api/deleteUser/deleteUser");
+const userProfileUpdate = require("../../api/userProfileUpdate/userProfileUpdate");
 
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.patch("/update-user", verifyToken, verifyAdmin, updateUser);
 
 router.delete("/delete-user/:id", verifyToken, verifyAdmin, deleteUser);
 
+router.patch("/update-profile/:id", verifyToken, userProfileUpdate);
 
+ 
 module.exports = router;

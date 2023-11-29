@@ -23,7 +23,7 @@ const getVerifiedProperties = async (req, res, next) => {
         }
 
         const result = await propertyModel.find(query);
-        return res.send(result);
+        res.send(result);
 
     } catch(err) {
         next(err);

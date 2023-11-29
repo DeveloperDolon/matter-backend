@@ -64,7 +64,12 @@ const PropertySchema = new Schema({
     "advertised": {
         type: Boolean,
         default: false,
+    },
+    "advisor_email": {
+        type: String,
+        default: "none"
     }
+    
 
 
 });
