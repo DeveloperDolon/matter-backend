@@ -19,7 +19,7 @@ const addUserPaymentData = async (req, res, next) => {
         
         const paymentResult = await paymentModel.insertMany(payment);
 
-        res.send(paymentResult);
+        res.send(paymentResult); 
 
     } catch (err) {
         next(err);
