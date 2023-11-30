@@ -28,6 +28,10 @@ app.get('/health', (req, res) =>{
     res.send("Agency is running")
 })
 
+app.get('/', (req, res) =>{
+    res.send("Agency is running")
+})
+
 app.all("*", (req, res, next) => {
     const error = new Error(`The requested url ${req.url} does not exist!`);
     error.status = 404;
@@ -48,4 +52,4 @@ const main = async () => {
     })
 }
 
-main();
+// main();

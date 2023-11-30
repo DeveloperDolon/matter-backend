@@ -1,31 +1,55 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const cors = require('cors');const { config } = require('dotenv');
+const applyMiddleware = require('./src/middlewares/applyMiddleware');
+const connectDB = require('./src/db/connectDB');
 const port = process.env.PORT || 5000;
-const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const uri = "mongodb+srv://<username>:<password>@cluster0.evacz3b.mongodb.net/?retryWrites=true&w=majority";
+applyMiddleware(app);
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+const authenticationRouter = require("./src/routes/authentication/index");
+const usersRouter = require("./src/routes/users/index");
+const properties = require("./src/routes/properties/index");
+const propertyReviews = require("./src/routes/propertyReviews/index");
+const wishlist = require("./src/routes/wishlist/index");
+const propertyBought = require("./src/routes/propertyBought/index");
+const paymentRoutes = require("./src/routes/payment/index");
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
+app.use(authenticationRouter);
+app.use(usersRouter);
+app.use(properties);
+app.use(propertyReviews);
+app.use(wishlist);
+app.use(propertyBought);
+app.use(paymentRoutes);
+
+
+app.get('/health', (req, res) =>{
+    res.send("Agency is running")
+})
+
+app.get('/', (req, res) =>{
+    res.send("Agency is running")
+})
+
+app.all("*", (req, res, next) => {
+    const error = new Error(`The requested url ${req.url} does not exist!`);
+    error.status = 404;
+    next(error);
+})
+
+app.use((err, req, res, next) => {
+    res.status(err.status || 500).json({
+        message: err.message
+    })
+})
+
+const main = async () => {
+    await connectDB();
+
+    app.listen(port, () => {
+        console.log("Agency is listening " + port);
+    })
 }
-run().catch(console.dir);
+
+main();

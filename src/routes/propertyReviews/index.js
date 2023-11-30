@@ -6,6 +6,7 @@ const verifyAdmin = require("../../middlewares/verifyAdmin");
 const getUserReviews = require("../../api/getUserReviews/getUserReviews");
 const getAllUserReviews = require("../../api/getUserReviews/getAllUserReviews");
 const deleteReview = require("../../api/deleteReview/deleteReview");
+const latestUserReviews = require("../../api/latestUserReviews/latestUserReviews");
 const router = express.Router();
 
 router.get("/property-reviews/:id", verifyToken, getPropertyReviews);
@@ -17,5 +18,7 @@ router.get("/user-reviews", verifyToken, getUserReviews);
 router.delete("/user-reviews/:id", verifyToken, deleteReview);
 
 router.get("/all-user-reviews", verifyToken, verifyAdmin, getAllUserReviews);
+
+router.get("/latest-user-reviews", latestUserReviews);
 
 module.exports = router;
